@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+        }
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        #logoutBtn{
+            background-color: white;
+            color: #34495e;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .home{
+            background-color: white;
+            color: black;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #34495e;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+        }
+        .search-bar button {
+            padding: 10px;
+            background-color: #34495e;
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .search-bar button:hover {
+            background-color: #2c3e50;
+        }
+        .categories {
+            margin: 20px;
+            padding: 20px;
+        }
+        .categories h2 {
+            margin-bottom: 10px;
+        }
+        .categories-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 0;
+            scroll-behavior: smooth;
+        }
+        .category {
+            min-width: 200px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .category img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .new-books {
+            margin: 20px;
+            padding: 20px;
+        }
+        .new-books h2 {
+            margin-bottom: 10px;
+        }
+        .new-books-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .new-book {
+            width: 200px;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .new-book img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .scroll-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .scroll-buttons button {
+            padding: 10px;
+            background-color: #34495e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .scroll-buttons button:hover {
+            background-color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">E-Library</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search books, authors, topics...">
+            <button onclick="search()">Search</button>
+        </div>
+        <nav>
+            <a href="#" class="home">Home</a>
+            <a href="about.html">About</a>
+            <a href="service.html">Services</a>
+            <a href="feedback.html">Feedback</a>
+            <a href="contact.html">Contact us</a>
+            <button id="logoutBtn" onclick="logout()">Logout</button>
+        </nav>
+    </header>
+
+    <div class="categories">
+        <h2>Categories</h2>
+        <div class="categories-container" id="categoriesContainer">
+            <div class="category" onclick="navigateToCategory('Fiction')">
+                <img src="fiction.jpg" alt="Fiction">
+                <p>Fiction</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Science')">
+                <img src="science.avif" alt="Science">
+                <p>Science</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('History')">
+                <img src="history.jpg" alt="History">
+                <p>History</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Technology')">
+                <img src="technology.jpg" alt="Technology">
+                <p>Technology</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Biographies')">
+                <img src="biography.webp" alt="Biographies">
+                <p>Biographies</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Mystery')">
+                <img src="mystery.jpg" alt="Mystery">
+                <p>Mystery</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Fantasy')">
+                <img src="fantasy.webp" alt="Fantasy">
+                <p>Fantasy</p>
+            </div>
+            <div class="category" onclick="navigateToCategory('Romance')">
+                <img src="romance.webp" alt="Romance">
+                <p>Romance</p>
+            </div>
+        </div>
+        <div class="scroll-buttons">
+            <button onclick="scrollCategories(-300)">⬅️</button>
+            <button onclick="scrollCategories(300)">➡️</button>
+        </div>
+    </div>
+
+    <div class="new-books">
+        <h2>Newly Added Books</h2>
+        <div class="new-books-container">
+            <div class="new-book">
+                <img src="https://via.placeholder.com/200x150" alt="Book 1">
+                <p>Book 1</p>
+            </div>
+            <div class="new-book">
+                <img src="https://via.placeholder.com/200x150" alt="Book 2">
+                <p>Book 2</p>
+            </div>
+            <div class="new-book">
+                <img src="https://via.placeholder.com/200x150" alt="Book 3">
+                <p>Book 3</p>
+            </div>
+            <div class="new-book">
+                <img src="https://via.placeholder.com/200x150" alt="Book 4">
+                <p>Book 4</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function search() {
+            const query = document.querySelector('.search-bar input').value;
+            if (query.trim()) {
+                alert(`Searching for: ${query}`);
+            } else {
+                alert('Please enter a search term.');
+            }
+        }
+
+        function navigateToCategory(category) {
+            const categoryPages = {
+                Fiction: 'fiction.html',
+                Science: 'science.html',
+                History: 'history.html',
+                Technology: 'technology.html',
+                Biographies: 'biographies.html',
+                Mystery: 'mystery.html',
+                Fantasy: 'fantasy.html',
+                Romance: 'romance.html'
+            };
+            const url = categoryPages[category];
+            if (url) {
+                window.location.href = url;
+            } else {
+                alert('Category page not found.');
+            }
+        }
+
+        function scrollCategories(offset) {
+            const container = document.getElementById('categoriesContainer');
+            const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+            let newScrollPosition = container.scrollLeft + offset;
+            if (newScrollPosition < 0) newScrollPosition = 0;
+            if (newScrollPosition > maxScrollLeft) newScrollPosition = maxScrollLeft;
+                container.scrollTo({
+                    left: newScrollPosition,
+                    behavior: 'smooth'
+                    });
+        }
+
+        function logout() {
+            // Simulate the logout process
+            alert('You have been logged out successfully.');
+            // Redirect to home page after logout (optional)
+            window.location.href = 'index.html'; // Adjust the URL to your homepage
+        }
+
+    </script>
+</body>
+</html>
